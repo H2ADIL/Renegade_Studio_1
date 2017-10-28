@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float movementSpeed = 10;
-    public float turningSpeed = 60;
+    public float movementSpeed;
+    //public float turningSpeed;
 
     void Start ()
     {
@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
     {
 
-        float horizontal = Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime;
-        transform.Rotate(0, horizontal, 0);
+        float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
+        transform.Translate(horizontal, 0, 0);
 
         float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
         transform.Translate(0, 0, vertical);

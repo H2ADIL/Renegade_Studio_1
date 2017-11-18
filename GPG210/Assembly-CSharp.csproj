@@ -51,6 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\A.I\Node.cs" />
+     <Compile Include="Assets\Scripts\A.I\Robot.cs" />
+     <Compile Include="Assets\Scripts\A.I\RobotBehavior.cs" />
+     <Compile Include="Assets\Scripts\A.I\Sequence.cs" />
      <Compile Include="Assets\Scripts\Patrol.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />

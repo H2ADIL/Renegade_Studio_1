@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: ca2093d1d348e9c48b8ec4c0359e3cf5
+timeCreated: 1510737512
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Dharma Gothic E
+  fontNames:
+  - Dharma Gothic E
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a5e30280c3acfa14d80ad8f0f86dda55, type: 3}
+  - {fileID: 12800000, guid: c46bd1015731d0d43b117b4ba2ae235a, type: 3}
+  - {fileID: 12800000, guid: 180c3032d12bffd4cafcdc54f63e8cf0, type: 3}
+  - {fileID: 12800000, guid: 64125287d2001824dbfe3955e1652eb0, type: 3}
+  - {fileID: 12800000, guid: 52bb110aa678c164883df2f30a362935, type: 3}
+  - {fileID: 12800000, guid: a8cbdd7c7861c874d872375ee7cc971a, type: 3}
+  - {fileID: 12800000, guid: 096b1f9efacbd074899603d064daeaf0, type: 3}
+  - {fileID: 12800000, guid: 244aec3f7c23719499ceb2fbb6ddac30, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

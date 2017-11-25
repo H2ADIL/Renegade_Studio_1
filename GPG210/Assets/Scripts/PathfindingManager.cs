@@ -35,18 +35,19 @@ public class PathfindingManager : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            for (int j = 0; j < transform.childCount; i++)
+            for (int j = 0; j < transform.childCount; j++)
             {
                 if (i == j)
                 {
                     Distances[i][j] = -1;
                 }
+                
                 else
                 {
                     Vector3 dir = NodesPositions[j] - NodesPositions[i];
                     if (!Physics.Raycast(NodesPositions[i], dir, dir.magnitude))
                     {
-                        
+                        Debug.DrawLine(NodesPositions[i], NodesPositions[j]);
                     }
                     else
                     {
@@ -131,21 +132,5 @@ public class PathfindingManager : MonoBehaviour
         path.Add(NodesPositions[startNode]);
         path.Reverse();
         return path;
-    }
-
-    //Allows lines to be drawn between nodes
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        for (int i = 0; i < NodesPositions.Length; i ++)
-        {
-            for (int j = 0; j < NodesPositions.Length; j++)
-            {
-                if (Distances[i][j] != -1)
-                {
-                    Gizmos.DrawLine(NodesPositions[i], NodesPositions[j]);
-                }
-            }
-        }
     }
 }

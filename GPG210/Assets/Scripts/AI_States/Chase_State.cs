@@ -9,11 +9,19 @@ public class Chase_State : Node
     public override void Execute()
     {
         curState = Results.RUNNING;
-        /*
+
         List<Vector3> Pathfinder = PathfindingManager._instance.GetPath(_BehaviorTree.transform.position, _BehaviorTree.Player.transform.position);
-        
-     _BehaviorTree.transform.position =  Vector3.MoveTowards(_BehaviorTree.transform.position, Pathfinder[1], _BehaviorTree.speed);
-     */
+        int targetIndex = 1;
+        if (Pathfinder.Count > 2)
+        {
+            Vector3 dir = Pathfinder[2] - _BehaviorTree.transform.position;
+            if (!Physics.Raycast(_BehaviorTree.transform.position, dir, dir.magnitude))
+            {
+                targetIndex = 2;
+            }
+        }
+        _BehaviorTree.transform.position = Vector3.MoveTowards(_BehaviorTree.transform.position, Pathfinder[targetIndex], _BehaviorTree.speed);
+   
 
         /*
         curState = Results.FAILED;

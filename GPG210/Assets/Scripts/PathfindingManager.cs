@@ -7,6 +7,7 @@ public class PathfindingManager : MonoBehaviour
     //SINGLETON for Pathfinding is different to GameManager SINGLETONs
     //The case for the Singleton will change
     public static PathfindingManager _instance;
+    public bool showGraph;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class PathfindingManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             NodesPositions[i] = transform.GetChild(i).position;
+            transform.GetChild(i).name = "Point " + i;
             Distances[i] = new float[transform.childCount];
         }
 
@@ -47,7 +49,7 @@ public class PathfindingManager : MonoBehaviour
                     Vector3 dir = NodesPositions[j] - NodesPositions[i];
                     if (!Physics.Raycast(NodesPositions[i], dir, dir.magnitude))
                     {
-                        Debug.DrawLine(NodesPositions[i], NodesPositions[j]);
+                        Distances[i][j] = dir.magnitude;
                     }
                     else
                     {
@@ -73,14 +75,17 @@ public class PathfindingManager : MonoBehaviour
             }
         }
 
+        shortestDistance = float.MaxValue;
+
         for (int i = 0; i < NodesPositions.Length; i++)
         {
             if (Vector3.Distance(target, NodesPositions[i]) < shortestDistance)
             {
                 shortestDistance = Vector3.Distance(target, NodesPositions[i]);
+                targetNode = i;
             }
         }
-
+        //Debug.Log("Target node "+targetNode);
 
         //DIJKSTRA ALGORITHM
         Queue<int> waitingList = new Queue<int>();  //Queue List to check each nodes within the graph
@@ -94,6 +99,7 @@ public class PathfindingManager : MonoBehaviour
             AccShortestDist[i] = float.MaxValue;
             isVisited[i] = false;
             fromNode[i] = -1;
+            //waitingList.Enqueue(i);
         }
         AccShortestDist[startNode] = 0;
         waitingList.Enqueue(startNode);
@@ -105,13 +111,16 @@ public class PathfindingManager : MonoBehaviour
             for (int c = 0; c < NodesPositions.Length; c++)
             {
                 //Checks every cell of the graph for connection and if node !isVisited[c]
-                if (Distances[curNode][c] != 1 && !isVisited[c])
+                if (Distances[curNode][c] != -1 && !isVisited[c])
                 {
                     waitingList.Enqueue(c);
                     if (AccShortestDist[curNode] + Distances[curNode][c] < AccShortestDist[c])
                     {
+                        //Debug.Log(c+" Before: "+AccShortestDist[c]+" from "+fromNode[c]);
                         AccShortestDist[c] = AccShortestDist[curNode] + Distances[curNode][c];
                         fromNode[c] = curNode;
+
+                        //Debug.Log(c + " after: " + AccShortestDist[c] + " from " + fromNode[c]);
                     }
                 }
             }
@@ -123,14 +132,40 @@ public class PathfindingManager : MonoBehaviour
         int tNode = targetNode;
         List<Vector3> path = new List<Vector3>();
 
+        path.Add(target);
         path.Add(NodesPositions[targetNode]);
         while (tNode != startNode)
         {
             tNode = fromNode[tNode];
-            path.Add(NodesPositions[tNode]);
+            path.Add(NodesPositions[tNode]); 
+            //Debug.Log(tNode);
         }
         path.Add(NodesPositions[startNode]);
         path.Reverse();
+
+        for (int i = 0; i < path.Count - 1; i  ++)
+        {
+            Debug.DrawLine(path[i]+Vector3.up*5, path[i + 1]+Vector3.up*5, Color.yellow);
+        }
+
         return path;
+    }
+
+    private void Update()
+    {
+        if (!showGraph)
+            return;
+
+
+        for (int i = 0; i < NodesPositions.Length; i ++)
+        {
+            for (int j = 0; j < NodesPositions.Length; j ++)
+            {
+                if (Distances[i][j] != -1)
+                {
+                    Debug.DrawLine(NodesPositions[i], NodesPositions[j], Color.blue);
+                }
+            }
+        }
     }
 }

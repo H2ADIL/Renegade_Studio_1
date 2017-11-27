@@ -16,21 +16,18 @@ public class Player : MonoBehaviour
 
     InterfaceController _InterfaceController;
 
+    public bool isDead;
+
     void Start()
     {
-
+        isDead = false;
     }
 
     void Update()
     {
-        //Movement for X Axis
-        float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
-        transform.Translate(horizontal, 0, 0);
+        PlayerMovement();
 
-        //Movement for Z Axis
-        float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
-        transform.Translate(0, 0, vertical);
-
+        //Shooting controls
         if (Input.GetMouseButtonDown(0))
         {
             Bullet_EMP _EMP = Instantiate(_Bullet, firePosition.position, firePosition.rotation) as Bullet_EMP;
@@ -42,11 +39,16 @@ public class Player : MonoBehaviour
         //myCurrentammo += myCurrentammo
         CurrentAmmo_EMP += ammo;
         CurrentAmmo_Noisemaker += ammo;
-
     }
 
     void PlayerMovement()
     {
+        //Movement for X Axis
+        float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
+        transform.Translate(horizontal, 0, 0);
 
+        //Movement for Z Axis
+        float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+        transform.Translate(0, 0, vertical);
     }
 }

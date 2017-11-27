@@ -6,6 +6,7 @@ public class BehaviorTree : MonoBehaviour
 {
     public GameObject Player;
     public float moveSpeed;
+    public Player PlayerScript;
     
 
     public Transform[] Nodes;   //The Nodes the AI wll follow
@@ -29,7 +30,8 @@ public class BehaviorTree : MonoBehaviour
 
         Tree._BehaviorTree = this;
         Tree.Initialization();
-       Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerScript = GetComponent<Player>();
     }
 
     void Update()

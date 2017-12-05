@@ -4,10 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Walls
   - Enemies
-  - Noisemaker
-  - EMP Dart
   layers:
   - Default
   - TransparentFX
@@ -17,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Enemy
   - 
   - 
   - 

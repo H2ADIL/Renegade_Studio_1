@@ -18,12 +18,9 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void Update()
     {
-        /*
+
         float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
         target.transform.Rotate(0, horizontal, 0);
-
-        float vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
-        this.transform.Rotate(vertical, 0, 0);
 
         float desiredAngle = target.transform.eulerAngles.y;
         Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
@@ -31,39 +28,14 @@ public class ThirdPersonCamera : MonoBehaviour
 
         transform.LookAt(target.transform);
 
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKey(KeyCode.LeftShift))
         {
             cameraTop.enabled = true;
         }
-        else
-        {
-            cameraTop.enabled = false;
-        }
-        */
-        CameraControls();
-    }
 
-    void CameraControls()
-    {
-        float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-        target.transform.Rotate(0, horizontal, 0);
-
-        float vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
-        this.transform.Rotate(vertical, 0, 0);
-
-        float desiredAngle = target.transform.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-        transform.position = target.transform.position - (rotation * offset);
-
-        transform.LookAt(target.transform);
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            cameraTop.enabled = true;
-        }
-        else
-        {
-            cameraTop.enabled = false;
-        }
+		if(Input.GetKey(KeyCode.RightShift))
+			{
+				cameraTop.enabled = false;
+			}
     }
 }
